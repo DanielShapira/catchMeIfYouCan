@@ -1,0 +1,13 @@
+body{
+    width: 100%;
+    text-align:center;
+    color: white;
+}
+
+.myName{
+    text-align: center;
+}
+
+#gameCanvas{
+    border: 4px solid black;
+}

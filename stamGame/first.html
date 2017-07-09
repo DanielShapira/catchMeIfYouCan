@@ -1,0 +1,36 @@
+<!DOCTYPE "html">
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="firstStyle.css">
+
+        <script src="https://www.gstatic.com/firebasejs/4.1.0/firebase.js"></script>
+
+        <script>
+            // Initialize Firebase
+            var config = {
+                apiKey: "AIzaSyDwnCXb-lrrnBs3veAllMugLEV3idEHq9k",
+                authDomain: "javascriptproject-7fa5a.firebaseapp.com",
+                databaseURL: "https://javascriptproject-7fa5a.firebaseio.com",
+                projectId: "javascriptproject-7fa5a",
+                storageBucket: "javascriptproject-7fa5a.appspot.com",
+                messagingSenderId: "245747389192"
+            };
+            firebase.initializeApp(config);
+        </script>
+
+        <script src="game.js"></script>
+    </head>
+    <body>
+
+    <div class="myName">
+        <h1>לחץ עם העכבר על הלוח בשביל להזיז את הקוביה לשער</h1>
+    </div>
+
+    <img id="scream" src="5ccf41ab608510a55a2fcc7a0e74b94a.jpg" width="0" height="0">
+    <img id="smile" src="c3225569c9814f82bbfe41c4e0b689ea.jpg" width="0" height="0">
+    <img id="kiss" src="הורד.jpg" width="0" height="0">
+
+    <canvas id = "gameCanvas" width="1000" height="500"> </canvas>
+    </body>
+</html>

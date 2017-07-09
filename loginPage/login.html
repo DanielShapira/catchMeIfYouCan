@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login page</title>
+    <link rel="stylesheet" href="loginCss.css">
+    <script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyDwnCXb-lrrnBs3veAllMugLEV3idEHq9k",
+            authDomain: "javascriptproject-7fa5a.firebaseapp.com",
+            databaseURL: "https://javascriptproject-7fa5a.firebaseio.com",
+            projectId: "javascriptproject-7fa5a",
+            storageBucket: "javascriptproject-7fa5a.appspot.com",
+            messagingSenderId: "245747389192"
+        };
+        firebase.initializeApp(config);
+    </script>
+
+</head>
+<body>
+
+    <script>
+        var scores = [];
+        var database = firebase.database();
+        var score = database.ref("/Scores/");
+
+        function scoreTable(level, nickName) {
+            this.level = level;
+            this.nickName = nickName;
+        }
+
+        score.once("value", function (snapshot) {
+            snapshot.forEach(function (childSnapshot) {
+               scores.push(new scoreTable( childSnapshot.child("level").val(), childSnapshot.child("nickName").val()))
+            });
+
+            scoreTable = document.getElementById("scoreTable");
+            var tableBuild = "<table align='center' style=' border: 1px solid black;'>";
+            tableBuild += "<tr style=' border: 1px solid black;'>";
+            tableBuild += "<th style=' border: 1px solid black;'> " + "nick Name" + "</th>";
+            tableBuild += "<th style=' border: 1px solid black;'> " + "level" + "</th>";
+            tableBuild += "</tr>";
+
+            scores.forEach(function (score) {
+                tableBuild += "<tr style=' border: 1px solid black;'>";
+                tableBuild += "<th style=' border: 1px solid black;'> " + score.nickName + "</th>";
+                tableBuild += "<th style=' border: 1px solid black;'> " + score.level + "</th>";
+                tableBuild += "</tr>";
+            });
+            tableBuild += "</table>"
+            scoreTable.innerHTML = tableBuild;
+        });
+
+        window.onload = function() {
+            document.getElementById("form").onsubmit=function() {
+                var nickName = document.getElementById("nickName").value;
+                window.location.replace("../stamGame/first.html?nickName=" + nickName );
+                return false;
+            }
+        }
+    </script>
+
+    <h1>Login with your username and password</h1>
+    <form id = "form" onsubmit="return redirect()" method="get">
+        username:
+        <input type="text" id="nickName" required>
+        </br></br>
+        <input type="submit" value="submit">
+    </form>
+    </br>
+    <div id = "scoreTable"></div>
+</body>
+</html>
